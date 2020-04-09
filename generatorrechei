@@ -10,7 +10,7 @@ rech = {
 z = int(input())
 #z = int(z)
 e = 1
-q = 0
+
 while e <= z:
     e = e + 1
     q = 0
