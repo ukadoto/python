@@ -16,5 +16,11 @@ cats = {
     Vaska.key: Vaska
     
 }
-pprint(cats)
+pprint("dlina, ves,vozrast")
+
+m = input()
+for i in cats:
+    if cats[i].m>15:
+        pprint(cats[i].m)
+
 pprint(cats[Barsic.key])
