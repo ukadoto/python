@@ -1,0 +1,20 @@
+from pprint import pprint
+class Cat:
+    def __init__(self,name,dlina,ves,vozrast):
+        self.name, self.dlina,self.ves,self.vozrast = name, dlina, ves,vozrast
+        self.key = (name,vozrast)
+    def __repr__(self):
+        return "Cat('%s,%s,%s,%s)" %(self.name, self.dlina,self.ves,self.vozrast)
+Barsic = Cat("Барсик",45,3,4)
+Rizik = Cat("Рыжик",37,2,5)
+Murka = Cat("Мурка",55,6,3)
+Vaska = Cat("Васька",20,2,1)
+cats = {
+    Barsic.key: Barsic,
+    Rizik.key: Rizik,
+    Murka.key: Murka,
+    Vaska.key: Vaska
+    
+}
+pprint(cats)
+pprint(cats[Barsic.key])
