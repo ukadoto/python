@@ -1,0 +1,27 @@
+import random
+print("Гадальный салон мадам Бужье приветствует вас. Вы готовы?")
+asked = {}
+
+start = input()
+while start != 'no':
+    print("Задайте свой вопрос")
+    qwestion = input()
+    if qwestion in asked:
+        print(asked.get(qwestion))
+    else:
+        if qwestion.endswith('?'):
+            solution = random.randint(0, 1)
+            means =["да","нет"]
+            asked.setdefault(qwestion,means[solution])
+            if solution > 0:
+                print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
+                start= input()
+            else:
+                print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
+                start= input()
+                #print(asked)
+        else:
+            print("Это не вопрос. Мадам Бужье отвечает только на вопросы, оканчивающиеся ?")
+    
+else:
+    print("Мадам Бужье прощается с вами")
