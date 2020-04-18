@@ -15,11 +15,11 @@ while start != 'no':
             asked.setdefault(qwestion,means[solution])
             if solution > 0:
                 print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
-                start= input()
+                
             else:
                 print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
-                start= input()
-                #print(asked)
+            start= input()
+                
         else:
             print("Это не вопрос. Мадам Бужье отвечает только на вопросы, оканчивающиеся ?")
     
