@@ -1,27 +1,62 @@
 import random
+from itertools import product
+question_words ={'могу','можно','смогу','ли','я','мне','?'}
+
+def compare(s1, s2):
+    s1, s2 = [ s.lower() for s in [s1,s2] ]
+    ngrams = [ s1[i:i+3] for i in range(len(s1)-1) ]
+    count = 0
+    for ngram in ngrams:
+        count += s2.count(ngram)
+    return count / max(len(s1),len(s2))
+    
+    
+def sravni(q):
+     q = set(q.split())
+     q=q-question_words
+     w = set(asked.keys())
+     q.difference_update(w)
+     rez = []
+     print(rez)
+     for a,b in product(q,w):
+         rez +=[(compare(a,b),a,b)]
+         return max(rez)[0]
+     
+     
+     
+     
 print("Гадальный салон мадам Бужье приветствует вас. Вы готовы?")
 asked = {}
-
 start = input()
-while start != 'no':
+
+
+while start != 'нет':
     print("Задайте свой вопрос")
     qwestion = input()
+    
     if qwestion in asked:
         print(asked.get(qwestion))
-    else:
-        if qwestion.endswith('?'):
-            solution = random.randint(0, 1)
-            means =["да","нет"]
-            asked.setdefault(qwestion,means[solution])
-            if solution > 0:
-                print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
-                
-            else:
-                print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
-            start= input()
-                
+   
+   else:
+        if sravni(qwestion) in asked:
+            print(asked.get(sravni(qwestion)))
+        
         else:
-            print("Это не вопрос. Мадам Бужье отвечает только на вопросы, оканчивающиеся ?")
+            if qwestion.endswith('?'):
+                solution = random.randint(0, 1)
+                means =["да","нет"]
+                asked.setdefault(qwestion,means[solution])
+                
+                if solution > 0:
+                    print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
+                
+                else:
+                    print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
+                
+                start= input()
+            #print(asked)
+            else:
+                print("Это не вопрос. Мадам Бужье отвечает только на вопросы, оканчивающиеся ?")
     
 else:
     print("Мадам Бужье прощается с вами")
