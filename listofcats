@@ -1,26 +1,34 @@
 from pprint import pprint
+
+
 class Cat:
     def __init__(self,name,dlina,ves,vozrast):
         self.name, self.dlina,self.ves,self.vozrast = name, dlina, ves,vozrast
         self.key = (name,vozrast)
     def __repr__(self):
         return "Cat('%s,%s,%s,%s)" %(self.name, self.dlina,self.ves,self.vozrast)
-Barsic = Cat("Барсик",45,3,4)
-Rizik = Cat("Рыжик",37,2,5)
-Murka = Cat("Мурка",55,6,3)
-Vaska = Cat("Васька",20,2,1)
+        
+        
+barsic = Cat("Барсик",45,3,4)
+rizik = Cat("Рыжик",37,2,5)
+murka = Cat("Мурка",55,6,3)
+vaska = Cat("Васька",20,2,1)
+
+
 cats = {
-    Barsic.key: Barsic,
-    Rizik.key: Rizik,
-    Murka.key: Murka,
-    Vaska.key: Vaska
+    barsic.key: barsic,
+    rizik.key: rizik,
+    murka.key: murka,
+    vaska.key: vaska
     
 }
-pprint("dlina, ves,vozrast")
 
+
+pprint("dlina, ves,vozrast")
 m = input()
 for i in cats:
     if cats[i].m>15:
         pprint(cats[i].m)
+
 
 pprint(cats[Barsic.key])
