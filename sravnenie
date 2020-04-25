@@ -1,0 +1,51 @@
+import random
+from itertools import product
+question_words ={'могу','можно','могу','я','мне','?'}
+asked ={'можно задать вопрос?':'да','можно прочитать книгу?':'нет', 'можно смотреть телесериал?':'да'}
+
+def compare(s1, s2):
+    s1, s2 = ( s.lower() for s in [s1,s2] )
+    ngrams = ( s1[i:i+3] for i in range(len(s1)-1) )
+    count = 0
+    for ngram in ngrams:
+        count += s2.count(ngram)
+    return count / max(len(s1),len(s2))
+
+
+def sravni(q):
+    vopros = set(q.split())
+    vopros=vopros-question_words
+    kluchu = ((k.split()) for k in asked.keys())
+    rez = []
+    
+     
+
+    for slow in kluchu:
+        rez_sum=[]
+        i=set(slow)-question_words
+        n=0
+        for a,b in product(vopros,i):
+            #if compare(a,b)>0.6:
+            rez_sum += [(compare(a,b),a,b,slow)]
+                
+            m = sorted(rez_sum,key = lambda rez:rez_sum[0],reverse=True)
+            m=m[0:2]
+            
+            
+            for x in m:
+                
+                n+=x[0]
+                #print('n=',n)
+        if n>=1.1:
+            rez+=[n,m[0][3]] 
+                
+                
+    return rez
+       
+    
+        
+
+#print(sravni('можно задать вопрос?'))
+#print(sravni('можно задать вопросик?'))
+#print(sravni('можно задать вопросикчек?'))
+print(sravni('можно смотреть телевизор?'))
