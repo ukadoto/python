@@ -1,0 +1,14 @@
+class WrontMath(int):
+    def __init__(self, a):
+        self.a=a
+    
+    def wrsumm(self,b):
+        return (self.a+1)+b
+    
+    
+        
+a=WrontMath(int(input()))
+b=WrontMath(int(input()))
+
+
+print(a.wrsumm(b))
