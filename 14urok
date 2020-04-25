@@ -12,3 +12,24 @@ b=WrontMath(int(input()))
 
 
 print(a.wrsumm(b))
+
+
+____________________________
+
+class List10(list):
+    def __init__(self,x):
+        if len(x)>10:
+            raise ValueError('Извините, ваш список длиннее 10')
+        else:
+            super().__init__(x)
+                
+    def append(self,x):
+        if len(self)+len(x) >10:
+            raise ValueError('Извините, итоговый список будет длиннее 10 элементов')
+        else:
+            super().append(x)
+            
+a=List10([1,2,5,5])
+print(a)
+a=a.append([4,5,8,4,1,5,4])
+print(a)
