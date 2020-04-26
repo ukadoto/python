@@ -12,16 +12,44 @@ def compare(s1, s2):
     
     
 def sravni(q):
-     q = set(q.split())
-     q=q-question_words
-     w = set(asked.keys())
-     q.difference_update(w)
-     rez = []
-     print(rez)
-     for a,b in product(q,w):
-         rez +=[(compare(a,b),a,b)]
-         return max(rez)[0]
+    vopros = set(q.split())
+    vopros=vopros-question_words
+    kluchu = ((k.split()) for k in asked.keys())
+    rez = []
+    
      
+
+    for slow in kluchu:
+        rez_sum=[]
+        i=set(slow)-question_words
+        n=0
+        for a,b in product(vopros,i):
+            #if compare(a,b)>0.6:
+            rez_sum += [(compare(a,b),a,b,slow)]
+                
+            m = sorted(rez_sum,key = lambda rez:rez_sum[0],reverse=True)
+            m=m[0:2]
+            
+            
+            for x in m:
+                
+                n+=x[0]
+                #print('n=',n)
+        if n>=1.1:
+            rez+=[(n,m[0][3])] 
+                
+                
+    
+    
+    f=sorted(rez, reverse=True)
+    
+    if len(f)>0:
+        itog =(' '.join(f[0][1]))
+        
+    else:
+        itog = q
+    return itog
+    
      
      
      
@@ -37,9 +65,9 @@ while start != 'нет':
     if qwestion in asked:
         print(asked.get(qwestion))
    
-   else:
+    else:
         if sravni(qwestion) in asked:
-            print(asked.get(sravni(qwestion)))
+            print('я уже отвечала. Ответ - ',asked.get(sravni(qwestion)))
         
         else:
             if qwestion.endswith('?'):
@@ -48,7 +76,7 @@ while start != 'нет':
                 asked.setdefault(qwestion,means[solution])
                 
                 if solution > 0:
-                    print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
+                    print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос? Нет - закончить гадание")
                 
                 else:
                     print("Звезды говорят мне ", means[solution], ". Хотите задать еще один вопрос?")
