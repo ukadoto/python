@@ -1,0 +1,41 @@
+import xlrd, xlwt
+import pandas as pd
+th = pd.read_csv('th.csv')
+
+inic=th['Инициатор']
+comm=th['Комментарий']
+adress=th['Адрес']
+MyMass=[]
+nomera=[]
+
+#делаю массив из пар инициатор и комментарий
+for i in range(len(inic)):
+    MyMass+=[[inic[i],comm[i], adress[i]]]
+print(MyMass)
+def SplitName(x):
+    for stroka in x:
+        
+        stroka[0]=stroka[0].split()
+        q=stroka[0]
+        
+        for element in (range(len(q))):
+            q[element]=q[element][:-1]
+    return x  
+SplitName(MyMass)  #беру каждую пару фио+инициатор и  каждое фио по словам  делю и обрезаю у них последнюю букву 
+
+for i in range(len(MyMass)):#получаем каждую строку
+    fio=MyMass[i][0]
+    comment=MyMass[i][1]
+    
+    n=0 #это просто счетчик
+    for m in range(len(fio)):
+        
+        if fio[m] in comment:
+            n=n+1
+           
+    if n>=2:
+        nomera+=[i+1]
+
+for nomer in nomera:
+    print(inic[nomer],comm[nomer], adress[nomer])
+
