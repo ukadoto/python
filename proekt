@@ -12,6 +12,8 @@ nomera=[]
 for i in range(len(inic)):
     MyMass+=[[inic[i],comm[i], adress[i]]]
 print(MyMass)
+
+
 def SplitName(x):
     for stroka in x:
         
@@ -22,6 +24,7 @@ def SplitName(x):
             q[element]=q[element][:-1]
     return x  
 SplitName(MyMass)  #беру каждую пару фио+инициатор и  каждое фио по словам  делю и обрезаю у них последнюю букву 
+
 
 for i in range(len(MyMass)):#получаем каждую строку
     fio=MyMass[i][0]
