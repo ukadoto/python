@@ -1,0 +1,59 @@
+import random
+winner=0
+available=[0,1,2,3,4,5,6,7,8]
+
+
+
+def WinnerMessage(x):
+    print('Линия победила. Победа за ',x)
+    
+    
+field = [ 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+
+def print_field(field):
+    for i in range(3):
+        print(field[i*3], field[i*3+1], field[i*3+2])
+
+
+line_index = [[field[0], field[1], field[2]], [field[3], field[4], field[5]], [field[6], field[7], field[8]], [field[0], field[3], field[6]], [field[1], field[4],field[7]], [field[2], field[5], field[8]], [field[0], field[4], field[8]], [field[2], field[4], field[6]]]
+
+
+def get_line(index):
+    return line_index[index]
+
+def CheckLine(gamer):
+    for i in range(8):
+        line = get_line(i)
+        if line.count(gamer)==3:
+            return gamer
+        else:
+            return 0
+    
+parity=0
+def Parity(parity):
+    if parity%2==0:
+        return "x"
+    else:
+        return "0"
+#CheckLine('0')
+#CheckLine('x')
+def Movie(available):
+    randmove=random.choice(available)
+    field[randmove]=Parity(parity)
+    
+    available.remove(randmove)
+    print_field(field)
+    
+
+
+while len(available)!=0:
+    print('ход N ',parity, 'ходят ', Parity(parity),"\n")
+    Movie(available)
+    print(CheckLine(Parity(parity)))
+    if CheckLine(Parity(parity))!=0:
+        
+        WinnerMessage(Parity(parity))
+        break
+    else:
+        parity+=1  
