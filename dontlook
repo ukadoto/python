@@ -1,0 +1,76 @@
+import datetime
+
+warehouse_id={22: 'ленина,1',
+23: 'попова,7/шкаф 1',
+24: 'попова,7/шкаф 2',
+25: 'борчанинова,15',
+    
+}
+
+device_classec={
+    7:'коммутатор',
+    8:'маршрутизатор',
+}
+
+class Devices:
+    def __init__(self, device_id, device_type_id, parent_device_id, device_name, setup_date,warehouse_id):
+        self.device_id=device_id
+        self.device_type_id=device_type_id
+        self.parent_device_id=parent_device_id
+        self.device_name=device_name
+        self.setup_date=setup_date
+        self.warehouse_id=warehouse_id
+        
+    def info_Device(self):
+        
+        print(self.device_id,self.device_type_id, self.parent_device_id,self.device_name,self.setup_date,self.warehouse_id)
+        
+        
+        
+class Device_type(Devices):
+    def __init__(self, device_type_id, device_class_id, device_type_name, device_cost):
+        self.device_type_id=device_type_id
+        self.device_class_id=device_class_id
+        self.device_type_name=device_type_name
+        self.device_cost=device_cost
+        
+    def info_Device_type(self):
+            
+            print(self.device_type_id,self.device_class_id,self.device_type_name,self.device_cost)
+            
+            
+            
+
+        
+dev15=Device_type(15,7,'коммутатор D-link', 10200)
+dev16=Device_type(16,8,'коммутатор Cisco', 5100)
+dev17=Device_type(17,8,'коммутатор TP-link', 4800)
+
+dev_id123=Devices(123,15,None, 'коммутатор D-link на ленина, 1', '2018 2 1',22)
+dev_id134=Devices(134,16,123, 'коммутатор Cisco на попова,7', '2018 6 11',23)
+dev_id145=Devices(145,17,123, 'коммутатор TP-link 2 на попова, 7', '2018 5 20',24)
+dev_id167=Devices(167,17,134, 'коммутатор TP-link на попова, 7', '2018 9 17',24)
+dev_id178=Devices(178,15,123, 'коммутатор D-link на борчанинова, 15', '2018 2 3',25)
+
+device_set=[dev_id123,dev_id134,dev_id145,dev_id167,dev_id178]
+device_type_set=[dev15,dev16,dev17]
+
+
+cost=0
+for device in device_set:
+    
+    for i in device_type_set:
+    
+        if device.device_type_id == i.device_type_id:
+            cost+=i.device_cost
+            #print(cost)
+#print('итого ',cost)
+  
+  
+def print_onweb(device_set):
+    for dev in device_set:
+        dev.info_Device()
+
+#print(dev15.info_Device_type())
+#print(device_set[1].device_name)
+print_onweb(device_set)
